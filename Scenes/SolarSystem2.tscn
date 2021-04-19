@@ -1,0 +1,175 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scenes/PlanetCard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Export_SevenSecrets/1mDroneFaded.WAV" type="AudioStream" id=2]
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=3]
+[ext_resource path="res://PlayerShip.gd" type="Script" id=4]
+[ext_resource path="res://Textures/seamless-starfield-texture.jpg" type="Texture" id=5]
+[ext_resource path="res://fonts/Oxanium-Medium.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://fonts/Oxanium-Light.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://fonts/Oxanium-Bold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Scenes/menu.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+extra_spacing_top = 10
+extra_spacing_bottom = 10
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = ExtResource( 7 )
+
+[node name="SolarSystem" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2( 800, 800 )
+
+[node name="PlayerShip" type="Node2D" parent="Player"]
+script = ExtResource( 4 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Player/PlayerShip"]
+position = Vector2( -100, -100 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer0" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.75, 0.75 )
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+
+[node name="Planets" type="Node2D" parent="."]
+
+[node name="Sun" parent="Planets" instance=ExtResource( 1 )]
+star = true
+
+[node name="Planet0" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 1000, 1000 )
+
+[node name="Planet1" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( -1000, -1000 )
+
+[node name="PlanetPlacer" type="Node2D" parent="."]
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="PlanetPlacer"]
+rect = Rect2( -256, -256, 512, 512 )
+
+[node name="CameraToPlayer" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 0, 0 )
+default_color = Color( 0.27451, 0.45098, 0.439216, 0 )
+
+[node name="PulsePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -12.0
+pitch_scale = 0.5
+max_distance = 4000.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 1013.14, 1004.65 )
+current = true
+
+[node name="Sprite" type="Sprite" parent="Camera2D"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 5 )
+script = ExtResource( 9 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Sprite"]
+margin_left = -500.0
+margin_top = -450.0
+margin_right = 500.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 1000, 900 )
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Camera2D/Sprite/VBoxContainer"]
+margin_top = 247.0
+margin_right = 1000.0
+margin_bottom = 347.0
+custom_fonts/font = SubResource( 1 )
+text = "SEVEN SECRETS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Camera2D/Sprite/VBoxContainer"]
+margin_left = 395.0
+margin_top = 397.0
+margin_right = 604.0
+margin_bottom = 474.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 2 )
+custom_constants/hseparation = 20
+text = "  BEGIN  "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="Label" parent="Camera2D/Sprite/VBoxContainer"]
+margin_top = 524.0
+margin_right = 1000.0
+margin_bottom = 653.0
+custom_fonts/font = SubResource( 3 )
+text = "WASD KEYS MOVE CAMERA
+
+LEFT MOUSE BUTTON SELECTS DESTINATION OBJECT"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Label" parent="Camera2D/Sprite/VBoxContainer"]
+visible = false
+margin_top = 410.0
+margin_right = 1000.0
+margin_bottom = 640.0
+custom_fonts/font = SubResource( 4 )
+custom_constants/line_spacing = 22
+text = "7 Secrets discovered.
+Thank you for playing.
+Game, Music, and Secrets by Ssilenuss
+Made for the Godot Wild Jam 32 in 2021"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits2" type="Label" parent="Camera2D/Sprite/VBoxContainer"]
+visible = false
+margin_top = 410.0
+margin_right = 1000.0
+margin_bottom = 640.0
+custom_fonts/font = SubResource( 4 )
+custom_constants/line_spacing = 22
+text = "Thank you for playing.
+Game, Music, and Secrets by Ssilenuss
+Made for the Godot Wild Jam 32 in 2021"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="Camera2D/Sprite"]
+position = Vector2( -1919.21, 0 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 5 )
+
+[node name="Sprite3" type="Sprite" parent="Camera2D/Sprite"]
+position = Vector2( 1919.07, 0 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 5 )
+[connection signal="pressed" from="Camera2D/Sprite/VBoxContainer/Button" to="Camera2D/Sprite" method="_on_Button_pressed"]

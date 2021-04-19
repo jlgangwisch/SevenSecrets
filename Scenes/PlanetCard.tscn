@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/PlanetCard.gd" type="Script" id=2]
+[ext_resource path="res://Export_SevenSecrets/3mMelodicVoice.WAV" type="AudioStream" id=6]
+
+[sub_resource type="World" id=1]
+
+[node name="PlanetCard" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="PlanetButton" type="TextureButton" parent="."]
+margin_right = 512.0
+margin_bottom = 512.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+action_mode = 0
+keep_pressed_outside = true
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 512, 512 )
+own_world = true
+world = SubResource( 1 )
+transparent_bg = true
+handle_input_locally = false
+
+[node name="Camera" type="Camera" parent="Viewport"]
+current = true
+
+[node name="PlanetSong" type="AudioStreamPlayer2D" parent="."]
+max_distance = 1000.0
+bus = "PlanetSongs"
+
+[node name="PlanetSong2" type="AudioStreamPlayer2D" parent="."]
+max_distance = 500.0
+bus = "PlanetSongs"
+
+[node name="SecretPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -12.0
+pitch_scale = 0.8
+bus = "Secrets"
+
+[node name="SecretPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -12.0
+pitch_scale = 0.8
+bus = "Secrets"
+[connection signal="button_down" from="PlanetButton" to="." method="_on_PlanetButton_button_down"]
+[connection signal="pressed" from="PlanetButton" to="." method="_on_PlanetButton_pressed"]

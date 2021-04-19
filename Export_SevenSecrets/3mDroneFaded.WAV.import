@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/3mDroneFaded.WAV-c215bc087889be18b7e0a741dca00201.sample"
+
+[deps]
+
+source_file="res://Export_SevenSecrets/3mDroneFaded.WAV"
+dest_files=[ "res://.import/3mDroneFaded.WAV-c215bc087889be18b7e0a741dca00201.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

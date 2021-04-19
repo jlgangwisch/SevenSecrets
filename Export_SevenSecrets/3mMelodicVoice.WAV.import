@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/3mMelodicVoice.WAV-edd56fb0dbeaf095a81fde2f0abeaeb1.sample"
+
+[deps]
+
+source_file="res://Export_SevenSecrets/3mMelodicVoice.WAV"
+dest_files=[ "res://.import/3mMelodicVoice.WAV-edd56fb0dbeaf095a81fde2f0abeaeb1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
